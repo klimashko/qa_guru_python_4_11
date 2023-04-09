@@ -6,6 +6,8 @@ import os
 import tests
 import pytest
 
+from tests.utils import attach
+
 
 @pytest.fixture(scope="function", autouse=True)
 def open_browser():
@@ -80,5 +82,9 @@ def test_student_registration_form():
                 'NCR Delhi',
             )
         )
+
+    attach.add_html(browser)
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
 
 
