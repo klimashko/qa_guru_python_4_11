@@ -3,9 +3,11 @@ from selene.support.shared import browser
 from selene import have
 from selene import command
 import os
+from selenium.webdriver.chrome.options import Options
+
 import tests
 import pytest
-
+from selenium import webdriver
 from tests.utils import attach
 
 
@@ -17,7 +19,25 @@ def open_browser():
 
     browser.quit()
 
+
 def test_student_registration_form():
+    options = Options()
+    selenoid_capabilities = {
+        "browserName": "chrome",
+        "browserVersion": "100.0",
+        "selenoid:options": {
+            "enableVNC": True,
+            "enableVideo": False
+        }
+    }
+
+    options.capabilities.update(selenoid_capabilities)
+    driver = webdriver.Remote(
+        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        options=options)
+
+    browser.config.driver = driver
+
     with allure.step('Open registration form'):
         browser.open('/automation-practice-form')
 
