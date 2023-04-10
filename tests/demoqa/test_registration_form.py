@@ -27,7 +27,7 @@ def test_student_registration_form():
         "browserVersion": "100.0",
         "selenoid:options": {
             "enableVNC": True,
-            "enableVideo": False
+            "enableVideo": True
         }
     }
 
@@ -106,5 +106,6 @@ def test_student_registration_form():
     attach.add_html(browser)
     attach.add_screenshot(browser)
     attach.add_logs(browser)
+    attach.add_video(browser)
 
 
